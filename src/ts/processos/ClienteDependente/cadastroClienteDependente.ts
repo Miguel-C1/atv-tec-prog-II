@@ -5,7 +5,7 @@ import ListagemTitularesPorDocumento from "../ClienteTitular/listagemTitularesPo
 import CadastrarDocumentosCliente from "../cadastrarDocumentosCliente";
 import CadastroEnderecoDependente from "./cadastroEnderecoDependente";
 
-export default class CadastroClienteTitular extends Processo {
+export default class CadastroClienteDependente extends Processo {
     processar(): void {
         console.log('Iniciando o cadastro de um novo cliente...')
         let nome = this.entrada.receberTexto('Qual o nome do novo cliente?')
