@@ -4,6 +4,7 @@ import CadastroAcomodacoes from "../Acomodacoes/cadastroAcomodacoes";
 import DiretorCasalSimples from "../../diretores/diretorCasalSimples";
 import menuTipoClienteHospedarCasal from "../../menus/menuTipoClienteHospedarCasal";
 import Entrada from "../../io/entrada";
+import ClientesAcomodarDependente from "./clientesAcomodarDependente";
 
 export default class EstrategiaCasalSimples implements EstrategiaHospedagem {
     
@@ -21,12 +22,13 @@ export default class EstrategiaCasalSimples implements EstrategiaHospedagem {
         let construtor = new DiretorCasalSimples();
         let acomodacao = construtor.construir();
         let qtdHospedes = (2 * acomodacao.getCamaCasal()) + acomodacao.getCamaSolteiro();
-
+        
 
         switch (opcao) {
             case 1:
-                let clientes:  Cliente[] = [cliente];
-                acomodacao.setHospedes(clientes);
+                let clientes = new ClientesAcomodarDependente(cliente, qtdHospedes)
+                acomodacao.setHospedes(clientes.processar());
+                qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1)
                 const cadastrar = new CadastroAcomodacoes(acomodacao);
                 cadastrar.processar();
                 break

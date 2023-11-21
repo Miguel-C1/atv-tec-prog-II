@@ -10,5 +10,5 @@ export default abstract class Processo {
     public get Execucao(){
         return this.execucao
     }
-    abstract processar(): void
+    abstract processar(): any
 }
