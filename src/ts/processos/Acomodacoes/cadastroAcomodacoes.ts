@@ -1,15 +1,17 @@
-import Processo from "../abstracoes/processo";
+import Processo from "../../abstracoes/processo";
 
-import Armazem from "../dominio/armazem";
-import Acomodacao from "../modelos/acomodacao";
+import Armazem from "../../dominio/armazem";
+import Acomodacao from "../../modelos/acomodacao";
 
 export default class CadastroAcomodacoes extends Processo {
     private acomodacoes: Acomodacao[]
-    constructor() {
+    private acomodacao: Acomodacao
+    constructor(acomodacao: Acomodacao) {
         super()
         this.acomodacoes = Armazem.InstanciaUnica.Acomodacoes
+        this.acomodacao = acomodacao
     }
-    processar(acomodacao: Acomodacao): void {
-        this.acomodacoes.push(acomodacao);
+    processar(): void {
+        this.acomodacoes.push(this.acomodacao);
     }
 }
