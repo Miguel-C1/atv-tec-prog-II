@@ -6,7 +6,7 @@ import ListagemTitularesPorDocumento from "./ClienteTitular/listagemTitularesPor
 import updateTitular from "./ClienteTitular/updateClienteTitular";
 import EstrategiaCasalSimples from "./Hospedar/estrategiaCasalSimples";
 
-export default class TipoCadastroHospede extends Processo {
+export default class TipoCadastroAcomodacao extends Processo {
     constructor(){
         super()
         this.menu = new MenuTipoAcomodacao()
