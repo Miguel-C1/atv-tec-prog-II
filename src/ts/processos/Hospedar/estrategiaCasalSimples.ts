@@ -5,39 +5,44 @@ import DiretorCasalSimples from "../../diretores/diretorCasalSimples";
 import menuTipoClienteHospedarCasal from "../../menus/menuTipoClienteHospedarCasal";
 import Entrada from "../../io/entrada";
 import ClientesAcomodarDependente from "./clientesAcomodarDependente";
+import ClientesAcomodarTitular from "./clientesAcomodarTitular";
 
 export default class EstrategiaCasalSimples implements EstrategiaHospedagem {
-    
-    private menu: menuTipoClienteHospedarCasal 
+
+    private menu: menuTipoClienteHospedarCasal
     protected entrada = new Entrada()
 
 
-    constructor(){
+    constructor() {
         this.menu = new menuTipoClienteHospedarCasal()
     }
 
     hospedar(cliente: Cliente): void {
-        this.menu.mostrar()
-        let opcao = this.entrada.receberNumero('Qual opção desejada?')
         let construtor = new DiretorCasalSimples();
         let acomodacao = construtor.construir();
         let qtdHospedes = (2 * acomodacao.getCamaCasal()) + acomodacao.getCamaSolteiro();
-        
+        while (qtdHospedes > 0) {
+            this.menu.mostrar()
+            let opcao = this.entrada.receberNumero('Qual opção desejada?')
+            switch (opcao) {
+                case 1:
+                    let clientesDependente = new ClientesAcomodarDependente(cliente, qtdHospedes);
+                    acomodacao.setHospedes(clientesDependente.processar());
+                    qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1);
 
-        switch (opcao) {
-            case 1:
-                let clientes = new ClientesAcomodarDependente(cliente, qtdHospedes)
-                acomodacao.setHospedes(clientes.processar());
-                qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1)
-                const cadastrar = new CadastroAcomodacoes(acomodacao);
-                cadastrar.processar();
-                break
-            case 2:
-
-                break;
-            default:
-                console.log('Opção não entendida :(')
+                    break
+                case 2:
+                    let clientesTitulares = new ClientesAcomodarTitular(cliente, qtdHospedes);
+                    acomodacao.setHospedes(clientesTitulares.processar());
+                    qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1);
+                    break;
+                default:
+                    console.log('Opção não entendida :(')
+            }
         }
+        const cadastrar = new CadastroAcomodacoes(acomodacao);
+        cadastrar.processar();
+
 
     }
 }

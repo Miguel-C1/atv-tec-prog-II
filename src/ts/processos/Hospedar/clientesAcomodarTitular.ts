@@ -1,5 +1,6 @@
 import Processo from "../../abstracoes/processo";
 import Cliente from "../../modelos/cliente";
+import ListagemTitularesPorDocumento from "../ClienteTitular/listagemTitularesPorDocumento";
 
 export default class ClientesAcomodarTitular extends Processo {
     private cliente: Cliente;
@@ -13,11 +14,26 @@ export default class ClientesAcomodarTitular extends Processo {
 
     processar(): Cliente[] {
         console.clear();
-        let titularesAcomodados: Cliente[]  = [];
-        titularesAcomodados.push(this.cliente);
-        let loop = true
-        while (loop && titularesAcomodados.length + 1 < this.quantidade){
-            
+        let titularesAcomodados: Cliente[] = [];
+        let loop = true;
+        while (loop) {
+            if (titularesAcomodados.length + 1 < this.quantidade) {
+                loop = false
+            } else {
+                const numeroDocumento = this.entrada.receberTexto("Digite o número do Documento do Titular que você deseja Hospedar (Digite 0 para Sair): ");
+                if (numeroDocumento == "0") {
+                    loop = false
+                } else {
+                    const listagem = new ListagemTitularesPorDocumento(numeroDocumento);
+                    listagem.processar();
+                    const hospedar = listagem.obterResultado();
+                    if (hospedar)
+                        titularesAcomodados.push(hospedar);
+                    else
+                        console.log('Hospede Não encontrado');
+                }
+
+            }
         }
 
         return titularesAcomodados
