@@ -21,7 +21,8 @@ export default class ListagemTitularesPorDocumento extends Processo {
         console.log(`Iniciando a listagem dos clientes titulares com o documento ${this.numeroDocumento}...`);
 
         for (const cliente of this.clientes) {
-            if (this.titularComDocumento(cliente, this.numeroDocumento)) {
+            let verificacao = this.titularComDocumento(cliente, this.numeroDocumento)
+            if (verificacao) {
                 this.impressor = new ImpressaorCliente(cliente);
                 console.log(this.impressor.imprimir());
 
@@ -35,11 +36,14 @@ export default class ListagemTitularesPorDocumento extends Processo {
 
     private titularComDocumento(cliente: Cliente, numeroDocumento: string): boolean {
         if (cliente.Titular == undefined) {
-            return cliente.Documentos.some(doc => doc.Numero === numeroDocumento);
+            const documentoEncontrado = cliente.Documentos.find(doc => doc.Numero === numeroDocumento);
+            console.log("Documento Encontrado: ", documentoEncontrado);
+            return documentoEncontrado !== undefined;
         } else {
-            return false
+            return false;
         }
     }
+    
 
     obterResultado(): Cliente | undefined {
         return this.resultado;

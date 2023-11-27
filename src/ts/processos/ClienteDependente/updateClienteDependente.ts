@@ -33,7 +33,7 @@ export default class updateDependente extends Processo {
                 const clienteTitular = this.clientes.find(cliente => this.dependenteComDocumento(cliente, novoTitular));
 
                 if (clienteTitular) {
-                    clienteEncontrado.setTitular = clienteTitular;
+                    clienteEncontrado.setTitular(clienteTitular);
                 } else {
                     console.log('Titular não encontrado')
                 }

@@ -1,5 +1,5 @@
 import Processo from "../abstracoes/processo";
-import MenuTipoCliente from "../menus/menuTipoCliente copy";
+import MenuTipoCliente from "../menus/menuTipoCliente";
 import deleteDependente from "./ClienteDependente/deleteClienteDependente";
 import updateDependente from "./ClienteDependente/updateClienteDependente";
 import deleteTitulares from "./ClienteTitular/deleteClienteTitular";
