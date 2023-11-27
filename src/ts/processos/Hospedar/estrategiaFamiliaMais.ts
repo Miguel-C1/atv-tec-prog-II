@@ -26,13 +26,13 @@ export default class EstrategiaFamiliaMais implements EstrategiaHospedagem {
             this.menu.mostrar()
             let opcao = this.entrada.receberNumero('Qual opção desejada?')
             switch (opcao) {
-                case 1:
+                case 2:
                     let clientesDependente = new ClientesAcomodarDependente(cliente, qtdHospedes);
                     acomodacao.setHospedes(acomodacao.Hospede.concat(clientesDependente.processar()));
                     qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1);
 
                     break;
-                case 2:
+                case 1:
                     let clientesTitulares = new ClientesAcomodarTitular(cliente, qtdHospedes);
                     acomodacao.setHospedes(acomodacao.Hospede.concat(clientesTitulares.processar()));
                     qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1);

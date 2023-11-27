@@ -36,7 +36,7 @@ export default class ListagemDependentePorTitular extends Processo {
 
     private titularComDocumento(cliente: Cliente, numeroDocumento: string): boolean {
         if (cliente.Titular == undefined) {
-            return cliente.Documentos.some(doc => doc.Numero === numeroDocumento);
+            return cliente.Documentos.some(doc => doc.Numero == numeroDocumento);
         } else {
             return false
         }

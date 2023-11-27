@@ -24,9 +24,7 @@ export default class ListagemDependente extends Processo {
     }
     private dependente(cliente: Cliente): boolean {
         let verificacao = false
-        console.log(cliente.Titular)
         if (cliente.Titular) {
-            console.log('teste')
             verificacao = true
         }
         return verificacao
