@@ -7,13 +7,9 @@ import Cliente from "../../modelos/cliente";
 export default class ClientesAcomodarDependente extends Processo {
     private cliente: Cliente;
 
-    private resultado: Cliente | undefined = undefined;
-    private quantidade: number;
-
-    constructor(cliente: Cliente, quantidade: number) {
+    constructor(cliente: Cliente) {
         super();
         this.cliente = cliente
-        this.quantidade = quantidade
     }
 
     processar(): Cliente[] {
@@ -25,8 +21,6 @@ export default class ClientesAcomodarDependente extends Processo {
             if (opcao == "S") {
                 dependentesAcomodados.push(dependente)
             }
-
-
         }
         return dependentesAcomodados
     }

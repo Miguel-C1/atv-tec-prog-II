@@ -27,7 +27,7 @@ export default class EstrategiaCasalSimples implements EstrategiaHospedagem {
             let opcao = this.entrada.receberNumero('Qual opção desejada?')
             switch (opcao) {
                 case 2:
-                    let clientesDependente = new ClientesAcomodarDependente(cliente, qtdHospedes);
+                    let clientesDependente = new ClientesAcomodarDependente(cliente);
                     acomodacao.setHospedes(clientesDependente.processar());
 
                     break;
