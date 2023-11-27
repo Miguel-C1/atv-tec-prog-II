@@ -17,7 +17,7 @@ export default class EstrategiaFamiliaMais implements EstrategiaHospedagem {
         this.menu = new menuTipoClienteHospedarCasal()
     }
 
-    hospedar(cliente: Cliente): void {
+    async hospedar(cliente: Cliente): Promise<void> {
         let construtor = new DiretorFamiliaMais();
         let acomodacao = construtor.construir();
         let qtdHospedes = (2 * acomodacao.getCamaCasal()) + acomodacao.getCamaSolteiro();
@@ -26,16 +26,13 @@ export default class EstrategiaFamiliaMais implements EstrategiaHospedagem {
             this.menu.mostrar()
             let opcao = this.entrada.receberNumero('Qual opção desejada?')
             switch (opcao) {
-                case 2:
-                    let clientesDependente = new ClientesAcomodarDependente(cliente);
-                    const dependentes = clientesDependente.processar()
-                    acomodacao.setHospedes(acomodacao.Hospede.concat(dependentes));
-                    qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1);
-
-                    break;
                 case 1:
                     let clientesTitulares = new ClientesAcomodarTitular(cliente, qtdHospedes);
                     acomodacao.setHospedes(acomodacao.Hospede.concat(clientesTitulares.processar()));
+                    qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1);
+                    break;
+                case 2:
+                    acomodacao.setHospedes(acomodacao.Hospede.concat(cliente.Dependentes));
                     qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1);
                     break;
                 case 0:
@@ -47,7 +44,5 @@ export default class EstrategiaFamiliaMais implements EstrategiaHospedagem {
         }
         const cadastrar = new CadastroAcomodacoes(acomodacao);
         cadastrar.processar();
-
-
     }
 }

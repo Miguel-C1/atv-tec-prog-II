@@ -17,7 +17,7 @@ export default class EstrategiaFamiliaSuper implements EstrategiaHospedagem {
         this.menu = new menuTipoClienteHospedarCasal()
     }
 
-    hospedar(cliente: Cliente): void {
+    async hospedar(cliente: Cliente): Promise<void> {
         let construtor = new DiretorFamiliaSuper();
         let acomodacao = construtor.construir();
         let qtdHospedes = (2 * acomodacao.getCamaCasal()) + acomodacao.getCamaSolteiro();
@@ -28,7 +28,7 @@ export default class EstrategiaFamiliaSuper implements EstrategiaHospedagem {
             switch (opcao) {
                 case 2:
                     let clientesDependente = new ClientesAcomodarDependente(cliente);
-                    acomodacao.setHospedes(acomodacao.Hospede.concat(clientesDependente.processar()));
+                    acomodacao.setHospedes(acomodacao.Hospede.concat(cliente.Dependentes));
                     qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1);
 
                     break;
