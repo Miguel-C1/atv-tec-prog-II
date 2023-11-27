@@ -5,13 +5,11 @@ import Acomodacao from "../../modelos/acomodacao";
 
 export default class ClientesExcluirHospedes extends Processo {
     private cliente: Cliente;
-    private quantidade: number;
     private acomodacoes: Acomodacao[];
 
-    constructor(cliente: Cliente, quantidade: number) {
+    constructor(cliente: Cliente) {
         super();
         this.cliente = cliente;
-        this.quantidade = quantidade;
         this.acomodacoes = Armazem.InstanciaUnica.Acomodacoes;
     }
 

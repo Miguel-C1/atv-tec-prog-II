@@ -1,13 +1,13 @@
 import EstrategiaHospedagem from "../../interfaces/hospede";
 import Cliente from "../../modelos/cliente";
 import CadastroAcomodacoes from "../Acomodacoes/cadastroAcomodacoes";
-import DiretorCasalSimples from "../../diretores/diretorCasalSimples";
 import menuTipoClienteHospedarCasal from "../../menus/menuTipoClienteHospedarCasal";
 import Entrada from "../../io/entrada";
 import ClientesAcomodarDependente from "./clientesAcomodarDependente";
 import ClientesAcomodarTitular from "./clientesAcomodarTitular";
+import DiretorFamiliaSimples from "../../diretores/diretorFamiliaSimples";
 
-export default class EstrategiaCasalSimples implements EstrategiaHospedagem {
+export default class EstrategiaFamiliaSimples implements EstrategiaHospedagem {
 
     private menu: menuTipoClienteHospedarCasal
     protected entrada = new Entrada()
@@ -18,7 +18,7 @@ export default class EstrategiaCasalSimples implements EstrategiaHospedagem {
     }
 
     hospedar(cliente: Cliente): void {
-        let construtor = new DiretorCasalSimples();
+        let construtor = new DiretorFamiliaSimples();
         let acomodacao = construtor.construir();
         let qtdHospedes = (2 * acomodacao.getCamaCasal()) + acomodacao.getCamaSolteiro();
         let loop = true
@@ -28,12 +28,13 @@ export default class EstrategiaCasalSimples implements EstrategiaHospedagem {
             switch (opcao) {
                 case 1:
                     let clientesDependente = new ClientesAcomodarDependente(cliente, qtdHospedes);
-                    acomodacao.setHospedes(clientesDependente.processar());
+                    acomodacao.setHospedes(acomodacao.Hospede.concat(clientesDependente.processar()));
+                    qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1);
 
                     break;
                 case 2:
                     let clientesTitulares = new ClientesAcomodarTitular(cliente, qtdHospedes);
-                    acomodacao.setHospedes(clientesTitulares.processar());
+                    acomodacao.setHospedes(acomodacao.Hospede.concat(clientesTitulares.processar()));
                     qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1);
                     break;
                 case 0:

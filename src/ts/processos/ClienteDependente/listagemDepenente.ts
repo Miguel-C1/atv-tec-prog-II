@@ -17,13 +17,16 @@ export default class ListagemDependente extends Processo {
         this.clientes.forEach(cliente => {
             if (this.dependente(cliente)) {
                 this.impressor = new ImpressaorCliente(cliente)
-                console.log(this.impressor.imprimir())
+                const imprimir = this.impressor.imprimir()
+                console.log(imprimir)
             }
         })
     }
     private dependente(cliente: Cliente): boolean {
         let verificacao = false
+        console.log(cliente.Titular)
         if (cliente.Titular) {
+            console.log('teste')
             verificacao = true
         }
         return verificacao

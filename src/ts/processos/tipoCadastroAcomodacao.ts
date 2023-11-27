@@ -5,6 +5,8 @@ import updateDependente from "./ClienteDependente/updateClienteDependente";
 import ListagemTitularesPorDocumento from "./ClienteTitular/listagemTitularesPorDocumento";
 import updateTitular from "./ClienteTitular/updateClienteTitular";
 import EstrategiaCasalSimples from "./Hospedar/estrategiaCasalSimples";
+import EstrategiaFamiliaMais from "./Hospedar/estrategiaFamiliaMais";
+import EstrategiaFamiliaSimples from "./Hospedar/estrategiaFamiliaSimples";
 import EstrategiaFamiliaSuper from "./Hospedar/estrategiaFamiliaSuper";
 import EstrategiaSolteiroMais from "./Hospedar/estrategiaSolteiroMais";
 import EstrategiaSolteiroSimples from "./Hospedar/estrategiaSolteiroSimples";
@@ -34,8 +36,7 @@ export default class TipoCadastroAcomodacao extends Processo {
                 const numeroDocumento2 = this.entrada.receberTexto("Digite o número do Documento: ")
                 const listar2 = new ListagemTitularesPorDocumento(numeroDocumento2)
                 listar2.processar()
-                // Familia Mais
-                const estrategia2 = new EstrategiaCasalSimples()
+                const estrategia2 = new EstrategiaFamiliaMais()
                 const hospede2 = listar2.obterResultado()
                 if(hospede2)
                 estrategia2.hospedar(hospede2);
@@ -46,8 +47,7 @@ export default class TipoCadastroAcomodacao extends Processo {
                 const numeroDocumento3 = this.entrada.receberTexto("Digite o número do Documento: ")
                 const listar3 = new ListagemTitularesPorDocumento(numeroDocumento3)
                 listar3.processar()
-                // Familia Simples
-                const estrategia3 = new EstrategiaCasalSimples()
+                const estrategia3 = new EstrategiaFamiliaSimples()
                 const hospede3 = listar3.obterResultado()
                 if(hospede3)
                 estrategia3.hospedar(hospede3);

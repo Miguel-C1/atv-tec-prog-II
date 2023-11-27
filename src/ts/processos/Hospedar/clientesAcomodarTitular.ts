@@ -17,23 +17,20 @@ export default class ClientesAcomodarTitular extends Processo {
         let titularesAcomodados: Cliente[] = [];
         let loop = true;
         while (loop) {
-            if (titularesAcomodados.length + 1 < this.quantidade) {
+
+            const numeroDocumento = this.entrada.receberTexto("Digite o número do Documento do Titular que você deseja Hospedar (Digite 0 para Sair): ");
+            if (numeroDocumento == "0") {
                 loop = false
             } else {
-                const numeroDocumento = this.entrada.receberTexto("Digite o número do Documento do Titular que você deseja Hospedar (Digite 0 para Sair): ");
-                if (numeroDocumento == "0") {
-                    loop = false
-                } else {
-                    const listagem = new ListagemTitularesPorDocumento(numeroDocumento);
-                    listagem.processar();
-                    const hospedar = listagem.obterResultado();
-                    if (hospedar)
-                        titularesAcomodados.push(hospedar);
-                    else
-                        console.log('Hospede Não encontrado');
-                }
-
+                const listagem = new ListagemTitularesPorDocumento(numeroDocumento);
+                listagem.processar();
+                const hospedar = listagem.obterResultado();
+                if (hospedar)
+                    titularesAcomodados.push(hospedar);
+                else
+                    console.log('Hospede Não encontrado');
             }
+
         }
 
         return titularesAcomodados

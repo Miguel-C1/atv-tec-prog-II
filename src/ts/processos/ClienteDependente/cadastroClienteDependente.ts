@@ -11,15 +11,15 @@ export default class CadastroClienteDependente extends Processo {
         let nome = this.entrada.receberTexto('Qual o nome do novo cliente?')
         let nomeSocial = this.entrada.receberTexto('Qual o nome social do novo cliente?')
         let dataNascimento = this.entrada.receberData('Qual a data de nascimento?')
-        let titular = this.entrada.receberTexto('Qual o Número de Documento do Titular?')
-        let readTitular = new ListagemTitularesPorDocumento(titular)
+        let NumeroDocumentotitular = this.entrada.receberTexto('Qual o Número de Documento do Titular?')
+        let readTitular = new ListagemTitularesPorDocumento(NumeroDocumentotitular)
 
         let dependente = new Cliente(nome, nomeSocial, dataNascimento)
 
-        if (readTitular) {
+        if (readTitular.obterResultado()) {
             const resultado = readTitular.obterResultado();
             if (resultado) {
-                dependente.setTitular = resultado;
+                dependente.setTitular(resultado);
                 this.processo = new CadastroEnderecoDependente(resultado, dependente)
                 this.processo.processar()
 

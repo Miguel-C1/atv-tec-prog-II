@@ -21,7 +21,8 @@ export default class EstrategiaFamiliaSuper implements EstrategiaHospedagem {
         let construtor = new DiretorFamiliaSuper();
         let acomodacao = construtor.construir();
         let qtdHospedes = (2 * acomodacao.getCamaCasal()) + acomodacao.getCamaSolteiro();
-        while (qtdHospedes > 0) {
+        let loop = true
+        while (loop) {
             this.menu.mostrar()
             let opcao = this.entrada.receberNumero('Qual opção desejada?')
             switch (opcao) {
@@ -35,6 +36,9 @@ export default class EstrategiaFamiliaSuper implements EstrategiaHospedagem {
                     let clientesTitulares = new ClientesAcomodarTitular(cliente, qtdHospedes);
                     acomodacao.setHospedes(acomodacao.Hospede.concat(clientesTitulares.processar()));
                     qtdHospedes = qtdHospedes - (acomodacao.Hospede.length + 1);
+                    break;
+                case 0:
+                    loop = false;
                     break;
                 default:
                     console.log('Opção não entendida :(')
