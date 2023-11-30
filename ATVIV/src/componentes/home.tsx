@@ -12,8 +12,11 @@ export default class Home extends Component<props>{
         return (
             <div className="container-fluid">
                 <ul className="navbar-nav">
-                    <li key={'Clientes'}>
-                        <button type="button" className="btn btn-outline-primary" onClick={(e) => this.props.seletorView('Clientes', e)}>{'Clientes'}</button>
+                    <li key={'Clientes Titulares'}>
+                        <button type="button" className="btn btn-outline-primary"  style={{ backgroundColor: tema, color: "#000000" }} onClick={(e) => this.props.seletorView('Cliente', e)}>{'Clientes Titulares'}</button>
+                    </li>
+                    <li key={'Clientes Dependentes'}>
+                        <button type="button" className="btn btn-outline-primary" style={{ backgroundColor: tema, color: "#000000" }} onClick={(e) => this.props.seletorView('interfaceDependente', e)}>{'Clientes Dependentes'}</button>
                     </li>
                     
                 </ul>

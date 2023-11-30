@@ -35,7 +35,7 @@ export default class BarraNavegacao extends Component<props>{
             <>
                 <nav className="navbar navbar-expand-lg" data-bs-theme="light" style={{ backgroundColor: tema, marginBottom: 10 }}>
                     <div className="container-fluid">
-                        <span className="navbar-brand mb-0 h1">TESTE</span>
+                        <span className="navbar-brand mb-0 h1">Atlantis</span>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
